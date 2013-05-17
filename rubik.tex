@@ -1,0 +1,50 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatimbox}
+
+\begin{document}
+
+\title{TP EDyA 1 - Cubo de Rubik}
+
+\maketitle
+
+\abstract{La idea de este trabajo es realizar un programa que resuelva un cubo de Rubik, de manera general, representando el problema como una búsqueda. El programa recibirá por su entrada estándar un cubo de Rubik y deberá imprimir por su salida estándar la secuencia de movimientos que lo resuelven (no necesariamente la secuencia óptima).}
+
+\section{Introducción}
+
+Para después.
+
+\section{Comportamiento del programa}
+
+\subsection{Entrada}
+El programa recibirá una cadena de 54 números representando al cubo, donde los números del 1 al 6 representan un color del cubo. Por ejemplo, el siguiente es un cubo resuelto: \\
+\begin{center}
+\begin{verbbox}
+      1 1 1 
+      1 1 1 
+      1 1 1 
+2 2 2 3 3 3 4 4 4 5 5 5 
+2 2 2 3 3 3 4 4 4 5 5 5 
+2 2 2 3 3 3 4 4 4 5 5 5           .
+      6 6 6 
+      6 6 6 
+      6 6 6 
+\end{verbbox}
+
+\theverbbox
+\end{center}
+
+Haciendo referencia a las caras por el número que contienen, la cara 1 representa la cara superior, y etc, según la tabla. \\
+
+\begin{tabular}{c c c}
+Número & Nombre & Código \\
+1 & Superior (Upper) & U \\
+2 & Izquierda (Left) & L \\
+3 & Frente (Front) & F \\
+4 & Derecha (Right) & R \\
+5 & Atrás (Back) & B \\
+6 & Abajo (Down) & D \\
+\end{tabular}
+
+
+\end{document}
