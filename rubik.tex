@@ -12,7 +12,11 @@
 
 \section{Introducción}
 
-Para después.
+El cubo de Rubik es un rompecabezas mecánico tridimensional inventado por el escultor y profesor de arquitectura húngaro Ernő Rubik en 1974.\\ Originalmente llamado "cubo mágico", el rompecabezas fue licenciado por Rubik para ser vendido por Ideal Toy Corp. en 1984 y ganó el premio alemán a mejor juego del año en la categoría Mejor rompecabezas ese mismo año.\\ Hasta enero de 2009 se han vendido 350 millones de cubos en todo el mundo, haciéndolo el juego de rompecabezas más vendido del mundo. Es considerado ampliamente el juguete más vendido del mundo.
+En un cubo de Rubik clásico, cada una de las seis caras está cubierta por nueve pegatinas de seis colores uniformes (tradicionalmente blanco, rojo, azul, naranja, verde y amarillo) Un mecanismo de ejes permite a cada cara girar independientemente, mezclando así los colores. Para resolver el rompecabezas, cada cara debe volver a consistir en un solo color.\\
+El cubo de Rubik tiene ocho vértices y doce aristas. Hay $8!$ formas de combinar los vértices del cubo. Siete de estas pueden orientarse independientemente, y la orientación de la octava dependerá de las siete anteriores, dando  $3^7$ posibilidades. A su vez, hay $\frac{12!}{2}$ formas de disponer los vértices, dado que una paridad de las esquinas implica asimismo una paridad de las aristas. Once aristas pueden ser volteadas independientemente, y la rotación de la duodécima dependerá de las anteriores, dando $2^11$ posibilidades. En total el número de permutaciones posibles en el Cubo de Rubik es de:\\
+ $\frac{8!*12!*3^7*2^11}{2} = 43 252 003 274 489 856 000$
+Es decir, cuarenta y tres trillones doscientos cincuenta y dos mil tres billones doscientos setenta y cuatro mil cuatrocientos ochenta y nueve millones ochocientas cincuenta y seis mil permutaciones.\\
 
 \section{Comportamiento del programa}
 
@@ -45,6 +49,18 @@ Número & Nombre & Código \\
 5 & Atrás (Back) & B \\
 6 & Abajo (Down) & D \\
 \end{tabular}
+
+\subsection{Salida}
+El programa deberá devolver una cadena de caracteres formada unicamente por las operaciones necesarias para llegar, del cubo de entrada al cubo resuelto, separadas por espacios.\\
+La notación que usaremos para indicar las operaciones posibles es la siguiente:
+\begin{itemize}
+\item El código de cada cara en Mayúscula denota el movimiento de la misma en el sentido de las agujas del reloj.
+\item El código de cada cara seguido de una prima denota el movimiento de la misma en el sentido contrario. 
+\end{itemize}
+
+Notar que visto así, dada una operación P, P' puede ser vista como su inversa, la operación que "deshace" el efecto de la primera.
+
+
 
 
 \end{document}
