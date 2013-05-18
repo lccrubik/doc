@@ -1,5 +1,6 @@
-\documentclass[11pt,twoside,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{fullpage} % esto hace la página mas ancha, queda mejor?
 \usepackage{verbatimbox}
 
 \begin{document}
@@ -25,7 +26,7 @@ El programa recibirá una cadena de 54 números representando al cubo, donde los
       1 1 1 
 2 2 2 3 3 3 4 4 4 5 5 5 
 2 2 2 3 3 3 4 4 4 5 5 5 
-2 2 2 3 3 3 4 4 4 5 5 5           .
+2 2 2 3 3 3 4 4 4 5 5 5
       6 6 6 
       6 6 6 
       6 6 6 
@@ -34,17 +35,36 @@ El programa recibirá una cadena de 54 números representando al cubo, donde los
 \theverbbox
 \end{center}
 
-Haciendo referencia a las caras por el número que contienen, la cara 1 representa la cara superior, y etc, según la tabla. \\
+El cubo se representa en la entrada por su 'desdoblamiento'. No se debe confiar en el espaciado de la entrada. Sólo se debe asumir que se darán como entrada 54 números representando a los colores de las caras, en el orden anterior. Es decir, la entrada anterior es equivalente a:
 
-\begin{tabular}{c c c}
-Número & Nombre & Código \\
-1 & Superior (Upper) & U \\
-2 & Izquierda (Left) & L \\
-3 & Frente (Front) & F \\
-4 & Derecha (Right) & R \\
-5 & Atrás (Back) & B \\
-6 & Abajo (Down) & D \\
+\begin{center}
+\begin{verbbox}
+1 1 1 1 1 1 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 2 2 2 3 3 3
+4 4 4 5 5 5 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 6 6 6 6 6 6 
+\end{verbbox}
+
+\theverbbox
+\end{center}
+
+Usando el ejemplo anterior, le damos un nombre a cada cara según la tabla. \\
+% Haciendo referencia a las caras por el número que contienen, la cara 1 representa la cara superior, y etc, según la tabla. \\
+
+\begin{center}
+\begin{tabular}{| c || c | c |}
+\hline 
+Número & Nombre & Código \\ \hline
+1 & Superior (Upper) & U \\ \hline
+2 & Izquierda (Left) & L \\ \hline
+3 & Frente (Front) & F \\ \hline
+4 & Derecha (Right) & R \\ \hline
+5 & Atrás (Back) & B \\ \hline
+6 & Abajo (Down) & D \\ \hline
 \end{tabular}
+\end{center}
+
+
+Notar que no es necesario que el cubo resuelto quede exactamente como el ejemplo anterior. Cualquier cubo está resuelto mientras todos los colores (números) de cada cara sean iguales. 
+De hecho, dado un cubo de entrada, los números centrales de cada cara nunca cambian (¿por qué?), por lo que sería imposible resolverlo. % ponemos esto o no? agregamos las rotaciones o no? si ponemos rotaciones estamos mintiendo con lo segundo
 
 
 \end{document}
