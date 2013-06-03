@@ -1,6 +1,6 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{fullpage} % esto hace la página mas ancha, queda mejor?
+\usepackage{fullpage} % esto hace la página mas ancha, queda mejor? (SI!)
 \usepackage{verbatimbox}
 \usepackage{indentfirst}
 \usepackage{graphicx}
@@ -109,9 +109,43 @@ Típicamente, un problema de búsqueda se puede representar por 4 componentes:
 \item Un conjunto de estados finales 
 \item Varios operadores, que dado un estado, devuelven otro
 \end{itemize}
-En escencia, se puede pensar la busqueda de una sucecion de operaciones que lleven del estado inicial a algun estado final como la exploración del arbol que resulta de tener como raiz al estado inicial y como nodos hijos los estados resultantes de aplicar sucesivamente todos los operadores.La busqueda terminara cuando se llegue a algun estado final deseado.\\
-Dado esto, diremos que existen varios algoritmos de busqueda, que difieren entre si en la forma que recorren dicho arbol.\\
-A grandes rasgos, podemos hacer una primera division de los mismos en los que son \emph{Completos}, es decir que recorren todo el arbol, y los que no.\\
+En escencia, se puede pensar la búsqueda de una suceción de operaciones que lleven del estado inicial a algún estado final como la exploración del árbol que resulta de tener como raiz al estado inicial y como nodos hijos los estados resultantes de aplicar sucesivamente todos los operadores.La búsqueda terminará cuando se llegue a algún estado final deseado.\\
+Dado esto, diremos que existen varios algoritmos de búsqueda, que difieren entre si en la forma en que recorren dicho árbol.\\
+A continuación veremos algunos, que nos ayudaran a resolver el problema del cubo:
+\subsubsection{BFS}
+Esta búsqueda consiste en recorrer el árbol \emph{por niveles}. Esto quiere decir que ningún nodo del nivel $n$ será visitado antes que uno del nivel $n-1$.
+{
+\begin{figure}
+  \centering
+    \includegraphics{img/BFS}
+  \caption{Recorrido primero en anchura (BFS)}
+  \label{fig:BFS}
+\end{figure}
+}
+\subsubsection{DFS}
+Esta búsqueda consiste en recorrer el árbol avanzando \emph{primero en profundidad}. Esto quiere decir que siempre que el nodo actual tenga hijos, se recorren estos, antes que los hermanos.
+{
+\begin{figure}
+  \centering
+    \includegraphics{img/DFS}
+  \caption{Recorrido primero en profundidad (DFS)}
+  \label{fig:DFS}
+\end{figure}
+}
+\subsection{DFS con Profundidad Acotada}
+Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de manera tal que los nodos del nivel $l+1$ en adelante sean ignorados. 
+\subsection{DFS con Profunidad Iteraiva}
+Consiste en utilizar reiteradas veces el algoritmo anterior, comenzando con $l \; = \; 0$ y aumentando $l$ en 1 por cada iteración.
+De esta forma, tomando como referencia le figura correspondiente al DFS, en cada iteración los nodos recorridos serán los siguientes: 
+\begin{itemize}
+\item 1
+\item 1, 2, 7, 8
+\item 1, 2, 3, 6, 7, 8, 9, 12 
+\item 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+\end{itemize}  
+% falta poner bibliografia 
+
+
 
 
 \section{Representación del problema}
