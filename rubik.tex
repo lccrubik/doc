@@ -27,7 +27,7 @@ Es decir, cuarenta y tres trillones doscientos cincuenta y dos mil tres billones
 
 Recientemente (2008), se demostró que cualquier cubo puede ser resuelto en a lo sumo 20 movimientos \cite{movs}. No es necesario que el programa dé una solución óptima, cualquier receta\footnotemark  \, que lleve a resolver el cubo (de longitud razonable, digamos menor a 1000 movimientos) es válida.
 
-\footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Por ejemplo \bold{RFlrUdbUU}}
+\footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Por ejemplo RFlrUdbUU}
 
 \section{Comportamiento del programa}
 
@@ -118,9 +118,9 @@ Es un algoritmo \emph{completo}. Esto quiere decir que siempre encuentra una sol
 Para mantener este orden de los nodos, se debe implementar una cola, que contendrá los nodos todavia no \emph{expandidos}.
 Sea $b$ la cantidad promedio de hijos por nodo. Si la solución está a una profundidad $d$, la complejidad temporal está en $O(b^d)$. La complejidad espacial también está en $O(b^d)$.
 {
-\begin{figure}
+\begin{figure}[h!]
   \centering
-    \includegraphics{img/BFS}
+    \includegraphics[width=0.7\textwidth]{img/BFS}
   \caption{Recorrido primero en anchura (BFS)}
   \label{fig:BFS}
 \end{figure}
@@ -130,31 +130,32 @@ Esta búsqueda consiste en recorrer el árbol avanzando \emph{primero en profund
 Este algoritmo también es completo (para un árbol finito), pero en general, no encuentra la solución óptima. Se implementa de una manera bastante directa con recursión. La complejidad temporal está en $O(b^{d_{max}})$, donde $d_{max}$ es la máxima profundidad del grafo. La complejidad espacial es bastante razonable: $O(d_{max})$.
 
 {
-\begin{figure}
+\begin{figure}[h!]
   \centering
-    \includegraphics{img/DFS}
+    \includegraphics[width=0.7\textwidth]{img/DFS}
   \caption{Recorrido primero en profundidad (DFS)}
   \label{fig:DFS}
 \end{figure}
 }
 \subsubsection{DFS con Profundidad Acotada}
 Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de manera tal que los nodos del nivel $l+1$ en adelante sean ignorados. 
-
-¿Es completa esta búsqueda? ¿Bajo que condiciones?
-
-¿Es óptima esta búsqueda? ¿Bajo que condiciones?
-
-¿Cuales son sus complejidades espaciales y temporales?
-
-\subsubsection{DFS con Profunidad Iterativa}
-Consiste en utilizar reiteradas veces el algoritmo anterior, comenzando con $l \; = \; 0$ y aumentando $l$ en 1 por cada iteración.
-De esta forma, tomando como referencia le figura correspondiente al DFS, en cada iteración los nodos recorridos serán los siguientes: 
 \begin{itemize}
-\item 1
-\item 1, 2, 7, 8
-\item 1, 2, 3, 6, 7, 8, 9, 12 
-\item 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
-\end{itemize}  
+\item ¿Es completa esta búsqueda? ¿Bajo que condiciones?.
+\item ¿Es óptima esta búsqueda? ¿Bajo que condiciones?.
+\item ¿Cuales son sus complejidades espaciales y temporales?.
+\item Supongamos que un DFS con profundidad acotada $n$ no encuentra solución, pero un DFS con profundidad acotada $n+1$ si encuentra. ¿Que se puede concluir respecto a la solución? 
+\end{itemize}
+
+%\subsubsection{DFS con Profunidad Iterativa}
+%Consiste en utilizar reiteradas veces el algoritmo anterior, comenzando con $l \; = \; 0$ y aumentando $l$ en 1 por cada iteración.
+%De esta forma, tomando como referencia le figura correspondiente al DFS, en cada iteración los nodos recorridos serán los siguientes: 
+%\begin{itemize}
+%\item 1
+%\item 1, 2, 7, 8
+%\item 1, 2, 3, 6, 7, 8, 9, 12 
+%\item 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+%\end{itemize}  
+
 % falta poner bibliografia 
 
 
