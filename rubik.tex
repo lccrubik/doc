@@ -1,9 +1,12 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
 \usepackage{fullpage} % esto hace la página mas ancha, queda mejor? (SI!)
 \usepackage{verbatimbox}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{courier}
+\usepackage{float}
 
 \begin{document}
 
@@ -15,9 +18,9 @@
 
 \section{Introducción}
 
-El cubo de Rubik es un rompecabezas mecánico tridimensional inventado por el escultor y profesor de arquitectura húngaro Ernö Rubik en 1974. Originalmente llamado ``cubo mágico'', el rompecabezas fue licenciado por Rubik para ser vendido por Ideal Toy Corp. en 1984 y ganó el premio alemán a mejor juego del año en la categoría Mejor rompecabezas ese mismo año. Hasta enero de 2009 se han vendido 350 millones de cubos en todo el mundo, haciéndolo el juego de rompecabezas más vendido del mundo. Es considerado ampliamente el juguete más vendido del mundo. \\
+El cubo de Rubik es un rompecabezas mecánico tridimensional inventado por el escultor y profesor de arquitectura húngaro Ernö Rubik en 1974. Originalmente llamado ``cubo mágico'', el rompecabezas fue licenciado por Rubik para ser vendido por Ideal Toy Corp. en 1984 y ganó el premio alemán a mejor juego del año en la categoría ``Mejor Rompecabezas'' ese mismo año. Hasta enero de 2009 vendieron 350 millones de cubos en todo el mundo, haciéndolo el juego de rompecabezas más vendido del mundo. Es considerado ampliamente el juguete más vendido del mundo. \\
 
-En un cubo de Rubik clásico, cada una de las seis caras está cubierta por nueve pegatinas de seis colores uniformes (tradicionalmente blanco, rojo, azul, naranja, verde y amarillo) Un mecanismo de ejes permite a cada cara girar independientemente, mezclando así los colores. Para resolver el rompecabezas, cada cara debe volver a consistir en un solo color.\\
+En un cubo de Rubik clásico, cada una de las seis caras está cubierta por nueve pegatinas de seis colores uniformes (tradicionalmente blanco, rojo, azul, naranja, verde y amarillo). Un mecanismo de ejes permite a cada cara girar independientemente, mezclando así los colores. Para resolver el rompecabezas, cada cara debe volver a consistir en un solo color.\\
 
 El cubo de Rubik tiene ocho vértices y doce aristas. Hay $8!$ formas de combinar los vértices del cubo. Siete de estas pueden orientarse independientemente, y la orientación de la octava dependerá de las siete anteriores, dando  $3^7$ posibilidades. A su vez, hay $\frac{12!}{2}$ formas de disponer los vértices, dado que una paridad de las esquinas implica asimismo una paridad de las aristas. Once aristas pueden ser volteadas independientemente, y la rotación de la duodécima dependerá de las anteriores, dando $2^{11}$ posibilidades. En total el número de permutaciones posibles en el Cubo de Rubik es de:\\
 \\
@@ -27,7 +30,7 @@ Es decir, cuarenta y tres trillones doscientos cincuenta y dos mil tres billones
 
 Recientemente (2008), se demostró que cualquier cubo puede ser resuelto en a lo sumo 20 movimientos \cite{movs}. No es necesario que el programa dé una solución óptima, cualquier receta\footnotemark  \, que lleve a resolver el cubo (de longitud razonable, digamos menor a 1000 movimientos) es válida.
 
-\footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Por ejemplo RFlrUdbUU}
+\footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Por ejemplo \texttt{RFlrUdbUU}}
 
 \section{Comportamiento del programa}
 
@@ -60,8 +63,7 @@ No se debe confiar en el espaciado de la entrada. Sólo se debe asumir que se da
 \theverbbox
 \end{center}
 
-Usando el ejemplo anterior, le damos un nombre a cada cara según la tabla. \\
-% Haciendo referencia a las caras por el número que contienen, la cara 1 representa la cara superior, y etc, según la tabla. \\
+Usando el ejemplo anterior, le damos un nombre y un código a cada cara según la tabla. \\
 
 \begin{center}
 \begin{tabular}{| c || c | c |}
@@ -78,26 +80,33 @@ Número & Nombre & Código \\ \hline
 
 
 Notar que no es necesario que el cubo resuelto quede exactamente como el ejemplo anterior. Cualquier cubo está resuelto mientras todos los colores (números) de cada cara sean iguales. 
-De hecho, dado un cubo de entrada, los números centrales de cada cara nunca cambian (¿por qué?), por lo que sería imposible resolverlo si requerimos que quede igual al ejemplo. % ponemos esto o no? agregamos las rotaciones o no? si ponemos rotaciones estamos mintiendo con lo segundo
+De hecho, dado un cubo de entrada, los números centrales de cada cara nunca cambian (¿por qué?), por lo que podría resultar imposible resolverlo si requerimos que quede igual al ejemplo. 
+
+% VALIDAR ENTRADA??
 
 \subsection{Salida}
-El programa deberá devolver una cadena de caracteres formada unicamente por las operaciones necesarias para llegar, del cubo de entrada al cubo resuelto, separadas por espacios.\\
+El programa deberá devolver una cadena de caracteres formada únicamente por las operaciones necesarias para llegar del cubo de entrada al cubo resuelto, separadas por espacios.\\
 La notación que usaremos para indicar las operaciones posibles es la siguiente:
 \begin{itemize}
 \item El código de cada cara en Mayúscula denota el movimiento de la misma en el sentido de las agujas del reloj.
-\item El código de cada cara en Minúscula denota el movimiento de la misma en el sentido contrario. 
+\item El código de cada cara en Minúscula denota el movimiento de la misma en el sentido contrario a las agujas del reloj.
 \end{itemize}
 
-Notar que visto así, dada una operación $P$, $p$ puede ser vista como su inversa, la operación que "deshace" el efecto de la primera. Ver figura \ref{fig:ejemplo}. \\
+Notar que visto así, dada una operación $P$, $p$ puede ser vista como su inversa, la operación que "deshace" el efecto de la primera. Ver figura \ref{fig:ejemplo} para una ilustración. \\
 
-\begin{figure}
+\begin{figure}[H]
   \centering
     \includegraphics{img/giros}
   \caption{Movimientos posibles}
   \label{fig:ejemplo}
 \end{figure}
 
-El programa se probará con una herramienta que verifica que dada una receta y un cubo, ésta sea solución del mismo. Se correrá con miles de casos de prueba, por lo que el programa debe ser razonablemente rápido (10 segundos o menos) y correcto en todos los casos. Teniendo en cuenta que el espacio de los cubos es enorme, esta cantidad de casos de prueba representa una pequeña fracción del total.
+El programa se probará con una herramienta que verifica que dada una receta y un cubo, ésta sea solución del mismo. Se correrá con miles de casos de prueba, por lo que el programa debe ser razonablemente rápido (10 segundos es mucho) y correcto en todos los casos. Teniendo en cuenta que el espacio de los cubos es enorme, esta cantidad de casos de prueba representa una pequeña fracción del total.
+
+
+\section{Representación del problema}
+
+Se puede pensar el problema de resolver el cubo de Rubik como una búsqueda en un espacio de estados, en donde se parte desde el cubo dado y se debe llegar mediante los movimientos de las caras al cubo resuelto. 
 
 
 \subsection{Problemas de búsqueda}
@@ -114,11 +123,16 @@ Dado esto, diremos que existen varios algoritmos de búsqueda, que difieren entr
 A continuación veremos algunos, que nos ayudarán a resolver el problema del cubo:
 \subsubsection{BFS}
 Esta búsqueda consiste en recorrer el árbol \emph{por niveles}. Esto quiere decir que ningún nodo del nivel $n$ será visitado antes que uno del nivel $n-1$.
-Es un algoritmo \emph{completo}. Esto quiere decir que siempre encuentra una solución (si existe). También vemos que al encontrar una solución, ésta es ``óptima'', ya que no puede haber ningún otra solución en un nivel superior.
-Para mantener este orden de los nodos, se debe implementar una cola, que contendrá los nodos todavia no \emph{expandidos}.
-Sea $b$ la cantidad promedio de hijos por nodo. Si la solución está a una profundidad $d$, la complejidad temporal está en $O(b^d)$. La complejidad espacial también está en $O(b^d)$.
+Es un algoritmo \emph{completo}. Esto quiere decir que siempre encuentra una solución (si existe). También vemos que al encontrar una solución, ésta es ``óptima'', ya que no puede haber ningún otra solución en un nivel superior. \\
+
+Para mantener este orden de los nodos, se debe implementar una cola, que contendrá los nodos todavia no \emph{expandidos}. \\
+
+Sea $b$ la cantidad promedio de hijos por nodo. Si la solución está a una profundidad $d$, la complejidad temporal está en $O(b^d)$. La complejidad espacial también está en $O(b^d)$. \\  % como se justifica que la comp espacial esta en O(b^d)?
+
+La figura \ref{fig:BFS} muestra el orden en el que se visitan los nodos para un árbol de ejemplo. \\
+
 {
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{img/BFS}
   \caption{Recorrido primero en anchura (BFS)}
@@ -126,17 +140,23 @@ Sea $b$ la cantidad promedio de hijos por nodo. Si la solución está a una prof
 \end{figure}
 }
 \subsubsection{DFS}
-Esta búsqueda consiste en recorrer el árbol avanzando \emph{primero en profundidad}. Esto quiere decir que siempre que el nodo actual tenga hijos, se recorren estos, antes que los hermanos.
-Este algoritmo también es completo (para un árbol finito), pero en general, no encuentra la solución óptima. Se implementa de una manera bastante directa con recursión. La complejidad temporal está en $O(b^{d_{max}})$, donde $d_{max}$ es la máxima profundidad del grafo. La complejidad espacial es bastante razonable: $O(d_{max})$.
+Esta búsqueda consiste en recorrer el árbol avanzando \emph{primero en profundidad}. Esto quiere decir que siempre que el nodo actual tenga hijos, se recorren estos, antes que los hermanos. \\
+
+Este algoritmo también es completo (para un árbol finito), pero en general, no encuentra la solución óptima. La implementación es análoga al BFS, sólo que la estructura en donde se guardan los nodos pasa a ser una pila en vez de una cola. Gracias a esta, se implementa de una manera bastante directa con recursión, donde la pila de nodos queda implícita por la pila de llamadas a función. \\
+
+La complejidad temporal está en $O(b^{d_{max}})$, donde $d_{max}$ es la máxima profundidad del árbol. La complejidad espacial es bastante razonable: $O(d_{max})$. \\
+
+La figura \ref{fig:DFS} muestra el orden en el que se visitan los nodos para un árbol de ejemplo.
 
 {
-\begin{figure}[h!]
+\begin{figure}[]
   \centering
     \includegraphics[width=0.7\textwidth]{img/DFS}
   \caption{Recorrido primero en profundidad (DFS)}
   \label{fig:DFS}
 \end{figure}
 }
+
 \subsubsection{DFS con Profundidad Acotada}
 Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de manera tal que los nodos del nivel $l+1$ en adelante sean ignorados. 
 \begin{itemize}
@@ -144,6 +164,7 @@ Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de man
 \item ¿Es óptima esta búsqueda? ¿Bajo que condiciones?.
 \item ¿Cuales son sus complejidades espaciales y temporales?.
 \item Supongamos que un DFS con profundidad acotada $n$ no encuentra solución, pero un DFS con profundidad acotada $n+1$ si encuentra. ¿Que se puede concluir respecto a la solución? 
+\item Usando la idea del ítem anterior, ¿puede diseñar una búsqueda completa y óptima basada en el DFS?
 \end{itemize}
 
 %\subsubsection{DFS con Profunidad Iterativa}
@@ -159,11 +180,6 @@ Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de man
 % falta poner bibliografia 
 
 
-
-
-\section{Representación del problema}
-
-Se puede pensar el problema de resolver el cubo de Rubik como una búsqueda en un espacio de estados, en donde se parte desde el cubo dado y se debe llegar mediante los movimientos de las caras al cubo resuelto. 
 
 
 

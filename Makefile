@@ -1,6 +1,6 @@
 .PHONY: clean all re see html
 
-all: rubik.pdf html
+all: rubik.pdf 
 
 html: rubik.tex
 	latex2html -v && latex2html -html_version 4.0,latin1,unicode rubik.tex -dir ./html
