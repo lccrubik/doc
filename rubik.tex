@@ -30,7 +30,7 @@ Es decir, cuarenta y tres trillones doscientos cincuenta y dos mil tres billones
 
 Recientemente (2008), se demostró que cualquier cubo puede ser resuelto en a lo sumo 20 movimientos \cite{movs}. No es necesario que el programa dé una solución óptima, cualquier receta\footnotemark  \, que lleve a resolver el cubo (de longitud razonable, digamos menor a 1000 movimientos) es válida.
 
-\footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Por ejemplo \texttt{RFlrUdbUU}}
+\footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Ejemplo: \texttt{RFlrUdbUU}}
 
 \section{Comportamiento del programa}
 
@@ -119,9 +119,11 @@ Típicamente, un problema de búsqueda se puede representar por 4 componentes:
 \item Varios operadores, que dado un estado, devuelven otro
 \end{itemize}
 En esencia, se puede pensar la búsqueda de una sucesión de operaciones que lleven del estado inicial a algún estado final como la exploración del árbol que resulta de tener como raiz al estado inicial y como nodos hijos los estados resultantes de aplicar sucesivamente todos los operadores. La búsqueda terminará cuando se llegue a algún estado final deseado.\\
-Dado esto, diremos que existen varios algoritmos de búsqueda, que difieren entre si en la forma en que recorren dicho árbol.\\
-A continuación veremos algunos, que nos ayudarán a resolver el problema del cubo:
-\subsubsection{BFS}
+
+Existen varios algoritmos de búsqueda distintos, que difieren entre si en la forma en que recorren dicho árbol.\\
+
+A continuación veremos algunos algoritmos que nos ayudarán a resolver el problema del cubo.
+\subsubsection{Breadth-first search (BFS)}
 Esta búsqueda consiste en recorrer el árbol \emph{por niveles}. Esto quiere decir que ningún nodo del nivel $n$ será visitado antes que uno del nivel $n-1$.
 Es un algoritmo \emph{completo}. Esto quiere decir que siempre encuentra una solución (si existe). También vemos que al encontrar una solución, ésta es ``óptima'', ya que no puede haber ningún otra solución en un nivel superior. \\
 
@@ -139,12 +141,12 @@ La figura \ref{fig:BFS} muestra el orden en el que se visitan los nodos para un 
   \label{fig:BFS}
 \end{figure}
 }
-\subsubsection{DFS}
+\subsubsection{Depth-first search (DFS)}
 Esta búsqueda consiste en recorrer el árbol avanzando \emph{primero en profundidad}. Esto quiere decir que siempre que el nodo actual tenga hijos, se recorren estos, antes que los hermanos. \\
 
 Este algoritmo también es completo (para un árbol finito), pero en general, no encuentra la solución óptima. La implementación es análoga al BFS, sólo que la estructura en donde se guardan los nodos pasa a ser una pila en vez de una cola. Gracias a esta, se implementa de una manera bastante directa con recursión, donde la pila de nodos queda implícita por la pila de llamadas a función. \\
 
-La complejidad temporal está en $O(b^{d_{max}})$, donde $d_{max}$ es la máxima profundidad del árbol. La complejidad espacial es bastante razonable: $O(d_{max})$. \\
+La complejidad temporal está en $O(b^{d})$, donde $d$ es la máxima profundidad del árbol. La complejidad espacial es bastante razonable: $O(d)$. \\
 
 La figura \ref{fig:DFS} muestra el orden en el que se visitan los nodos para un árbol de ejemplo.
 
