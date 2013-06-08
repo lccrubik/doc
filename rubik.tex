@@ -169,6 +169,18 @@ Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de man
 \item Usando la idea del ítem anterior, ¿puede diseñar una búsqueda completa y óptima basada en el DFS?
 \end{itemize}
 
+%No voy a poner ni una tilde. Despues lo arreglo :)
+\section{M\'as sobre b\'usqueda}
+Hay varios temas a considerar al programar un algoritmo de busqueda. Primero y principal, la eleccion de un algoritmo adecuado segun la busqueda que necesitemos hacer. Pensemos en un cubo de Rubik que necesita 20 pasos para resolverse. Partimos de ese estado inicial y buscamos una receta que solucione el cubo. \\
+
+Ignoremos por un momento los requerimientos de memoria. 
+
+Si elegimos un BFS, es seguro que se expandiran todos los nodos a distancia 19 del original, ya que no hay una receta de longitud 19 o menor que lo resuelva. La cantidad de nodos en el nivel 19 es un numero cercano a $12^{20}$, un numero inmensamente grande. Una busqueda BFS para encontrar la solucion no terminaria en tiempo razonable, por lo que no podriamos implementarlo de esta manera. Algunas ideas para mejorar esto es:
+
+\begin{itemize}
+\item \textbf{No buscar una solucion optima.} Debilitar los requerimientos puede facilitar la tarea.
+\item \textbf{Dividir la busqueda en etapas.} Podemos hacer busquedas parciales para ir resolviendo el cubo, usando una busqueda optima entre etapas. Notar que la optimalidad de las receta parciales no garantiza la optimalidad de la receta final.
+
 %\subsubsection{DFS con Profunidad Iterativa}
 %Consiste en utilizar reiteradas veces el algoritmo anterior, comenzando con $l \; = \; 0$ y aumentando $l$ en 1 por cada iteración.
 %De esta forma, tomando como referencia le figura correspondiente al DFS, en cada iteración los nodos recorridos serán los siguientes: 
