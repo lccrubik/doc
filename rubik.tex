@@ -172,15 +172,17 @@ Consiste en utilizar la búsqueda DFS con una cota $l$ en la profundidad, de man
 \section{Más sobre búsqueda}
 Hay varios temas a considerar al programar un algoritmo de búsqueda. Primero y principal, la elección de un algoritmo adecuado según la búsqueda que necesitemos hacer. Pensemos en un cubo de Rubik que necesita 20 pasos para resolverse. Partimos de ese estado inicial y buscamos una receta que solucione el cubo. \\
 
-Ignoremos por un momento los requerimientos de memoria. 
+Si elegimos una búsqueda óptima, se expandirán todos los nodos a distancia 19 del original, ya que no hay una receta de longitud 19 o menor que lo resuelva\footnotemark. La cantidad de nodos en el nivel 19 es un número en el orden de $11^{19}$, un número inmensamente grande. Una búsqueda con estas características no terminaría en tiempo razonable, por lo que no podríamos implementarlo de esta manera. Algunas ideas para mejorar esto son:
 
-Si elegimos un BFS, es seguro que se expandirán todos los nodos a distancia 19 del original, ya que no hay una receta de longitud 19 o menor que lo resuelva. La cantidad de nodos en el nivel 19 es un número en el orden de $11^{19}$, un número inmensamente grande. Una búsqueda BFS para encontrar la solución no terminaría en tiempo razonable, por lo que no podríamos implementarlo de esta manera. Algunas ideas para mejorar esto son:
+\footnotetext{Si es alguna búsqueda que expanda todos los nodos del nivel $n$ antes del $n+1$, como el BFS. Hay otras búsquedas que usando \emph{heurísticas}, pueden garantizar la optimalidad de la solución sin esta desventaja.}
 
 \begin{itemize}
-\item \textbf{No buscar una solución óptima.} Debilitar los requerimientos puede facilitar la tarea.
-\item \textbf{Dividir la búsqueda en etapas.} Podemos hacer búsquedas parciales para ir resolviendo el cubo, usando una búsqueda óptima (o no) entre etapas. Notar que la optimalidad de las receta parciales no garantiza la optimalidad de la receta final. % Queda muy 'Andrea Torres' el 'o no'??
-Además, la complejidad (tanto espacial como temporal) disminuye mucho.
-\item \textbf{Algo más.} Las listas tienen mínimo 3 items.
+\item \textbf{No buscar una solución óptima.} Debilitar los requerimientos puede facilitar la tarea. 
+\item \textbf{Dividir la búsqueda en etapas.} Podemos hacer búsquedas parciales para ir resolviendo el cubo, usando una búsqueda (óptima o no) entre etapas. Notar que la optimalidad de las receta parciales no garantiza la optimalidad de la receta final.
+Con una buena elección de las etapas, la complejidad (tanto espacial como temporal) disminuye mucho.
+\item \textbf{Usar una heurística.} Una heurística es una función que estima la distancia de un nodo (cubo) hasta la meta (cubo resuelto). Usando estas funciones podemos usar métodos de búsqueda \emph{con información}, que dan mejores resultados respecto a cantidad de nodos expandidos.
+\item \textbf{Aprovechar conocimiento específico del dominio.} % Bueeeena ING SOFT
+No es necesario que nuestro método de búsqueda sea general y sirva para cualquier problema. Queremos un programa que solamente resuelva el cubo de Rubik, entonces podemos aprovechar información específica sobre el cubo de Rubik que puede no aplicar a otros problemas.
 \end{itemize}
 
 %\subsubsection{DFS con Profunidad Iterativa}
