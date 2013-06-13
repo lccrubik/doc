@@ -28,6 +28,8 @@ El cubo de Rubik tiene ocho vértices y doce aristas. Hay $8!$ formas de combina
  
 Es decir, cuarenta y tres trillones doscientos cincuenta y dos mil tres billones doscientos setenta y cuatro mil cuatrocientos ochenta y nueve millones ochocientas cincuenta y seis mil permutaciones.\\
 
+Hay muchas formas algorítmicas de resolver el cubo, con distinto nivel de dificultad y distinta cantidad promedio de pasos \cite{solve}\cite{johnbent}. \\
+
 Recientemente (2008), se demostró que cualquier cubo puede ser resuelto en a lo sumo 20 movimientos \cite{movs}. No es necesario que el programa dé una solución óptima, cualquier receta\footnotemark  \, que lleve a resolver el cubo (de longitud razonable, digamos menor a 1000 movimientos) es válida.
 
 \footnotetext{Se conoce como \emph{Receta} a cualquier secuencia de movimientos de las caras del cubo. Ejemplo: \texttt{RFlrUdbUU}}
@@ -82,6 +84,22 @@ Número & Nombre & Código \\ \hline
 Notar que no es necesario que el cubo resuelto quede exactamente como el ejemplo anterior. Cualquier cubo está resuelto mientras todos los colores (números) de cada cara sean iguales. 
 De hecho, dado un cubo de entrada, los números centrales de cada cara nunca cambian (¿por qué?), por lo que podría resultar imposible resolverlo si requerimos que quede igual al ejemplo. 
 
+\subsubsection{Entrada de ejemplo}
+\begin{center}
+\begin{verbbox}
+      3 1 2
+      4 1 3
+      4 6 6
+1 5 5 1 2 4 3 1 5 6 4 4
+1 2 2 5 3 4 3 4 1 2 5 5
+4 6 3 2 2 6 2 6 1 2 6 6
+      1 3 3
+      3 6 4
+      5 5 5
+\end{verbbox}
+\theverbbox
+\end{center}
+
 % VALIDAR ENTRADA??
 
 \subsection{Salida}
@@ -92,7 +110,7 @@ La notación que usaremos para indicar las operaciones posibles es la siguiente:
 \item El código de cada cara en Minúscula denota el movimiento de la misma en el sentido contrario a las agujas del reloj.
 \end{itemize}
 
-Notar que visto así, dada una operación $P$, $p$ puede ser vista como su inversa, la operación que "deshace" el efecto de la primera. Ver figura \ref{fig:ejemplo} para una ilustración. \\
+Notar que visto así, dada una operación $P$, $p$ puede ser vista como su inversa, la operación que ``deshace'' el efecto de la primera. Ver figura \ref{fig:ejemplo} para una ilustración. \\
 
 \begin{figure}[H]
   \centering
@@ -103,6 +121,14 @@ Notar que visto así, dada una operación $P$, $p$ puede ser vista como su inver
 
 El programa se probará con una herramienta que verifica que dada una receta y un cubo, ésta sea solución del mismo. Se correrá con miles de casos de prueba, por lo que el programa debe ser razonablemente rápido (10 segundos es mucho) y correcto en todos los casos. Teniendo en cuenta que el espacio de los cubos es enorme, esta cantidad de casos de prueba representa una pequeña fracción del total.
 
+\subsubsection{Salida de ejemplo (para la entrada de ejemplo)}
+\begin{center}
+\begin{verbbox}
+bldfrDfdBUblULfuFLulfUUFUrURUBubuRuru
+fUFLulubUBuFufulULBLUluBURlBBrLUBBUU
+\end{verbbox}
+\theverbbox
+\end{center}
 
 \section{Representación del problema}
 
@@ -118,7 +144,7 @@ Típicamente, un problema de búsqueda se puede representar por 4 componentes:
 \item Un conjunto de estados finales 
 \item Varios operadores, que dado un estado, devuelven otro
 \end{itemize}
-En esencia, se puede pensar la búsqueda de una sucesión de operaciones que lleven del estado inicial a algún estado final como la exploración del árbol que resulta de tener como raiz al estado inicial y como nodos hijos los estados resultantes de aplicar sucesivamente todos los operadores. La búsqueda terminará cuando se llegue a algún estado final deseado.\\
+En esencia, se puede pensar la búsqueda de una sucesión de operaciones que lleven del estado inicial a algún estado final como la exploración del árbol que resulta de tener como raíz al estado inicial y como nodos hijos los estados resultantes de aplicar sucesivamente todos los operadores. La búsqueda terminará cuando se llegue a algún estado final deseado.\\
 
 Existen varios algoritmos de búsqueda distintos, que difieren entre si en la forma en que recorren dicho árbol.\\
 
@@ -144,11 +170,11 @@ La figura \ref{fig:BFS} muestra el orden en el que se visitan los nodos para un 
 \subsubsection{Depth-first search (DFS)}
 Esta búsqueda consiste en recorrer el árbol avanzando \emph{primero en profundidad}. Esto quiere decir que siempre que el nodo actual tenga hijos, se recorren estos, antes que los hermanos. \\
 
-Este algoritmo también es completo (para un árbol finito), pero en general, no encuentra la solución óptima. La implementación es análoga al BFS, sólo que la estructura en donde se guardan los nodos pasa a ser una pila en vez de una cola. Gracias a esta, se implementa de una manera bastante directa con recursión, donde la pila de nodos queda implícita por la pila de llamadas a función. \\
+Este algoritmo también es completo (para un árbol finito), pero en general, no encuentra la solución óptima. La implementación es análoga al BFS, sólo que la estructura en donde se guardan los nodos pasa a ser una pila en vez de una cola. Gracias a ésta, se implementa de una manera bastante directa con recursión, donde la pila de nodos queda implícita por la pila de llamadas a función. \\
 
 La complejidad temporal está en $O(b^{d})$, donde $d$ es la máxima profundidad del árbol. La complejidad espacial es bastante razonable: $O(d)$. \\
 
-La figura \ref{fig:DFS} muestra el orden en el que se visitan los nodos para un árbol de ejemplo.
+La figura \ref{fig:DFS} muestra el orden en el que se visitan los nodos para un árbol de ejemplo, donde se expanden primero los hijos izquierdos (similar a un recorrido pre-orden). \\
 
 {
 \begin{figure}[]
@@ -205,9 +231,13 @@ No es necesario que nuestro método de búsqueda sea general y sirva para cualqu
 
 \begin{thebibliography}{9}
 
+\bibitem{solve}
+  http://solve-the-cube.com/
+\bibitem{johnbent}
+  http://pages.cs.wisc.edu/{\textasciitilde}johnbent/rubik/
 \bibitem{movs}
   http://www.cube20.org/
-  
+
 \end{thebibliography}
 
 \end{document}
